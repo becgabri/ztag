@@ -31,11 +31,6 @@ class SSHBannerTransform(ZGrabTransform):
             if comment is not None:
                 transformed['comment'] = comment
             try:
-                del grab['data']['xssh']['key_exchange']['dh_params']['client_private']
-                del grab['data']['xssh']['key_exchange']['dh_params']['client_public']
-            except KeyError:
-                pass
-            try:
                 grab['data']['xssh']['server_host_key'] = grab['data']['xssh']['key_exchange']['server_host_key']
                 del grab['data']['xssh']['key_exchange']['server_host_key']
             except KeyError:

@@ -641,7 +641,7 @@ ztag_ssh_banner = SubRecord({
     }),
     "server_host_key":SubRecord({
         "raw":IndexedBinary(),
-        "algorithm":CensysString(),
+        "algorithm":String(),
         "fingerprint_sha256":HexString(),
         "rsa_public_key":ztag_rsa_params,
         "dsa_public_key":ztag_dsa_params,
@@ -652,19 +652,19 @@ ztag_ssh_banner = SubRecord({
             "key":SubRecord({
                 "raw":IndexedBinary(),
                 "fingerprint_sha256":HexString(),
-                "algorithm":CensysString(),
+                "algorithm":String(),
                 "rsa_public_key":ztag_rsa_params,
                 "dsa_public_key":ztag_dsa_params,
                 "ecdsa_public_key":ztag_ssh_ecdsa_public_key,
                 "ed25519_public_key":ztag_ed25519_public_key,
             }),
-            "serial":CensysString(),
+            "serial":String(),
             "cert_type":SubRecord({
                 "id":Unsigned32BitInteger(),
-                "name":CensysString(),
+                "name":String(),
             }),
-            "key_id":CensysString(),
-            "valid_principals":ListOf(CensysString()),
+            "key_id":String(),
+            "valid_principals":ListOf(String()),
             "validity":SubRecord({
                 "valid_after":DateTime(doc="Timestamp of when certificate is first valid. Timezone is UTC."),
                 "valid_before":DateTime(doc="Timestamp of when certificate expires. Timezone is UTC."),
@@ -674,7 +674,7 @@ ztag_ssh_banner = SubRecord({
             "signature_key":SubRecord({
                 "raw":IndexedBinary(),
                 "fingerprint_sha256":HexString(),
-                "algorithm":CensysString(),
+                "algorithm":String(),
                 "rsa_public_key":ztag_rsa_params,
                 "dsa_public_key":ztag_dsa_params,
                 "ecdsa_public_key":ztag_ssh_ecdsa_public_key,
@@ -684,20 +684,20 @@ ztag_ssh_banner = SubRecord({
             "parse_error":String(),
             "extensions":SubRecord({
                 "known":SubRecord({
-                    "permit_X11_forwarding":CensysString(),
-                    "permit_agent_forwarding":CensysString(),
-                    "permit_port_forwarding":CensysString(),
-                    "permit_pty":CensysString(),
-                    "permit_user_rc":CensysString(),
+                    "permit_X11_forwarding":String(),
+                    "permit_agent_forwarding":String(),
+                    "permit_port_forwarding":String(),
+                    "permit_pty":String(),
+                    "permit_user_rc":String(),
                 }),
-                "unknown":ListOf(CensysString()),
+                "unknown":ListOf(String()),
             }),
             "critical_options":SubRecord({
                 "known":SubRecord({
-                    "force_command":CensysString(),
-                    "source_address":CensysString(),
+                    "force_command":String(),
+                    "source_address":String(),
                 }),
-                "unknown":ListOf(CensysString()),
+                "unknown":ListOf(String()),
             })
         })
     }),

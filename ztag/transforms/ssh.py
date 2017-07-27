@@ -6,7 +6,7 @@ from ztag import errors, protocols
 class SSHV2Transform(ZGrabTransform):
     """Transforms ZGrab XSSH grabs for Censys."""
 
-    name = "ssh/sshv2"
+    name = "ssh/v2"
     port = None
     protocol = protocols.SSH
     subprotocol = protocols.SSH.V2

@@ -29,37 +29,3 @@ class SSHV2Transform(ZGrabTransform):
     zout = ZMapTransformOutput()
     zout.transformed = transformed
     return zout
-
-class SSHBannerTransform(ZGrabTransform):
-    """Transforms ZGrab SSH grabs for Censys."""
-
-    name = "ssh/banner"
-    port = None
-    protocol = protocols.SSH
-    subprotocol = protocols.SSH.BANNER
-
-    def _transform_object(self, obj):
-        sp = grab['data']['ssh']['server_protocol']
-        if sp.resolve() is None:
-            raise errors.IgnoreObject("No SSH grab data")
-
-        transformed = {}
-        raw_banner = sp['raw_banner'].resolve()
-        if raw_banner is not None:
-            transformed['raw_banner'] = raw_banner
-        protocol_version = sp['protocol_version'].resolve()
-        if protocol_version is not None:
-            transformed['protocol_version'] = protocol_version
-        software_version = sp['software_version'].resolve()
-        if software_version is not None:
-            transformed['software_version'] = software_version
-        comment = sp['comment'].resolve()
-        if comment is not None:
-            transformed['comment'] = comment
-
-        if len(transformed) == 0:
-            raise errors.IgnoreObject("Empty [X]SSH protocol output dict")
-
-        zout = ZMapTransformOutput()
-        zout.transformed = transformed
-        return zout

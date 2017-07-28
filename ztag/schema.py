@@ -580,7 +580,7 @@ ztag_ssh_signature = SubRecord({
     "raw":IndexedBinary(),
 })
 
-ztag_ssh_banner = SubRecord({
+ztag_ssh_v2 = SubRecord({
     "metadata":local_metadata,
     "timestamp":DateTime(),
     "banner":SubRecord({
@@ -856,7 +856,7 @@ ztag_schemas = [
     #("ztag_open_proxy", ztag_open_proxy),
     ("ztag_modbus", ztag_modbus),
     ("ztag_extended_random", ztag_extended_random),
-    ("ztag_ssh_banner", ztag_ssh_banner),
+    ("ztag_ssh_v2", ztag_ssh_v2),
     ("ztag_dns_lookup", ztag_dns_lookup),
     ("ztag_bacnet", ztag_bacnet),
     ("ztag_fox", ztag_fox),
@@ -1386,7 +1386,7 @@ ipv4_host = Record({
             }),
             Port(22):SubRecord({
                 "ssh":SubRecord({
-                    "banner": ztag_ssh_banner
+                    "v2": ztag_ssh_v2
                 }),
             }),
             Port(53):SubRecord({

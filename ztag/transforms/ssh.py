@@ -125,6 +125,11 @@ class SSHV2Transform(ZGrabTransform):
             if critical_options is not None:
                 certkey_public_key['critical_options'] = rewrite_known(critical_options)
 
+            key = certkey_public_key.get('key')
+            if key is not None:
+                del_key(key, 'raw')
+                certkey_public_key['key'] = key
+
             set_value(host_key, 'certkey_public_key', certkey_public_key)
 
         set_value(out, 'server_host_key', host_key)

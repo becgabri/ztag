@@ -642,7 +642,6 @@ ztag_ssh_v2 = SubRecord({
         "certkey_public_key":SubRecord({
             "nonce":IndexedBinary(),
             "key":SubRecord({
-                "raw":IndexedBinary(),
                 "fingerprint_sha256":HexString(),
                 "algorithm":String(),
                 "rsa_public_key":ztag_rsa_params,

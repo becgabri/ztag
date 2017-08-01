@@ -130,6 +130,17 @@ class SSHV2Transform(ZGrabTransform):
                 del_key(key, 'raw')
                 certkey_public_key['key'] = key
 
+            sig = certkey_public_key.get('signature')
+            if sig is not None:
+                formatted_sig = dict()
+                parsed = sig.get('parsed')
+                if parsed is not None:
+                    set_value(formatted_sig, 'value', parsed.get('value'))
+                    alg = dict()
+                    set_value(alg, 'name', parsed.get('algorithm'))
+                    set_value(formatted_sig, 'signature_algorithm', alg)
+                certkey_public_key['signature'] = formatted_sig
+
             set_value(host_key, 'certkey_public_key', certkey_public_key)
 
         set_value(out, 'server_host_key', host_key)

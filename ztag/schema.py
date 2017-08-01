@@ -572,14 +572,6 @@ golang_crypto_param = SubRecord({
 #    "metadata":local_metadata
 #})
 
-ztag_ssh_signature = SubRecord({
-    "parsed":SubRecord({
-        "algorithm":CensysString(),
-        "value":IndexedBinary(),
-    }),
-    "raw":IndexedBinary(),
-})
-
 ztag_ssh_v2 = SubRecord({
     "metadata":local_metadata,
     "timestamp":DateTime(),
@@ -669,7 +661,12 @@ ztag_ssh_v2 = SubRecord({
                 "ecdsa_public_key":ztag_ssh_ecdsa_public_key,
                 "ed25519_public_key":ztag_ed25519_public_key,
             }),
-            "signature":ztag_ssh_signature,
+            "signature":SubRecord({
+                "signature_algorithm":SubRecord({
+                    "name":String(),
+                }),
+                "value":IndexedBinary(),
+            }),
             "parse_error":String(),
             "extensions":SubRecord({
                 "permit_X11_forwarding":Boolean(),
